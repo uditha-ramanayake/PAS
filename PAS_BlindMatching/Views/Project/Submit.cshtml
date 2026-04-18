@@ -1,1 +1,147 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Submit Proposal";
+    var researchAreas = ViewBag.ResearchAreas as List<string> ?? new List<string>();
+    bool isGroup = ViewBag.IsGroup == true;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow border-0">
+                <div class="card-header bg-primary text-white py-4 text-center">
+                    <i class="bi bi-file-earmark-plus-fill" style="font-size: 2.5rem;"></i>
+                    <h3 class="mt-2 mb-0">Submit a Research Proposal</h3>
+                    <p class="text-white-50 mb-0 small">Your identity remains hidden until a supervisor selects your project.</p>
+                </div>
+                <div class="card-body p-4">
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>@TempData["Error"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <div>@error.ErrorMessage</div>
+                            }
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <form method="post" asp-action="Submit" asp-controller="Project">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Project Title <span class="text-danger">*</span></label>
+                            <input type="text" name="title" class="form-control" placeholder="e.g. AI-based Intrusion Detection System" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Abstract <span class="text-danger">*</span></label>
+                            <textarea name="abstract" class="form-control" rows="5"
+                                      placeholder="Describe your project goals, methodology, and expected outcomes..." required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Tech Stack <span class="text-danger">*</span></label>
+                            <input type="text" name="techStack" class="form-control"
+                                   placeholder="e.g. Python, TensorFlow, React, SQL Server" required />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                Research Area
+                                <span class="text-muted fw-normal small">(optional)</span>
+                            </label>
+                            <select name="researchArea" class="form-select">
+                                <option value="">-- Select a research area --</option>
+                                @foreach (var area in researchAreas)
+                                {
+                                    <option value="@area">@area</option>
+                                }
+                            </select>
+                            <div class="form-text text-muted">
+                                Selecting a research area helps supervisors find your proposal more easily.
+                            </div>
+                        </div>
+
+                        @if (isGroup)
+                        {
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-primary">
+                                    <i class="bi bi-people-fill me-2"></i>Group Members
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <p class="text-muted small mb-2">Add all group members below. Each member needs their full name and university user ID.</p>
+
+                                <div id="membersContainer">
+                                    <div class="member-row d-flex gap-2 mb-2 align-items-center">
+                                        <input type="text" name="memberNames" class="form-control" placeholder="Member Name" required />
+                                        <input type="text" name="memberIds" class="form-control" placeholder="User ID" required />
+                                        <button type="button" class="btn btn-outline-danger btn-sm remove-member" title="Remove" style="display:none;">
+                                            <i class="bi bi-dash-circle"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="button" id="addMemberBtn" class="btn btn-outline-primary btn-sm mt-1">
+                                    <i class="bi bi-plus-circle me-1"></i>Add Another Member
+                                </button>
+                            </div>
+                        }
+
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            <i class="bi bi-send me-2"></i>Submit Proposal
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3 bg-light">
+                    <a asp-controller="Project" asp-action="MyProjects" class="text-secondary text-decoration-none small">
+                        <i class="bi bi-list-check me-1"></i>View My Submissions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (isGroup)
+{
+    <script>
+        document.getElementById('addMemberBtn')?.addEventListener('click', function () {
+            const container = document.getElementById('membersContainer');
+            const row = document.createElement('div');
+            row.className = 'member-row d-flex gap-2 mb-2 align-items-center';
+            row.innerHTML = `
+                <input type="text" name="memberNames" class="form-control" placeholder="Member Name" required />
+                <input type="text" name="memberIds" class="form-control" placeholder="User ID" required />
+                <button type="button" class="btn btn-outline-danger btn-sm remove-member" title="Remove">
+                    <i class="bi bi-dash-circle"></i>
+                </button>`;
+            container.appendChild(row);
+            updateRemoveButtons();
+        });
+
+        document.getElementById('membersContainer')?.addEventListener('click', function (e) {
+            if (e.target.closest('.remove-member')) {
+                e.target.closest('.member-row').remove();
+                updateRemoveButtons();
+            }
+        });
+
+        function updateRemoveButtons() {
+            const rows = document.querySelectorAll('.member-row');
+            rows.forEach((row, i) => {
+                const btn = row.querySelector('.remove-member');
+                btn.style.display = rows.length > 1 ? 'inline-block' : 'none';
+            });
+        }
+    </script>
+}
