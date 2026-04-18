@@ -13,14 +13,14 @@ namespace PAS_BlindMatching.Data
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            // Create options builder
+            // 1️⃣ Create options builder
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
-            // Hardcode connection string
+            // 2️⃣ Hardcode connection string
             // Change Server=.; if you use SQL Express (e.g., .\SQLEXPRESS)
             optionsBuilder.UseSqlServer("Server=MIHISARA\\SQLEXPRESS;Database=PAS_DB;Trusted_Connection=True;TrustServerCertificate=True;");
 
-            // Return new AppDbContext with options
+            // 3️⃣ Return new AppDbContext with options
             return new AppDbContext(optionsBuilder.Options);
         }
     }

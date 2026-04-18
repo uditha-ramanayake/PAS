@@ -1,1 +1,115 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var role = Context.Session.GetString("Role");
+    var userId = Context.Session.GetInt32("UserId");
+}
+
+<div class="container mt-5">
+    @if (userId == null)
+    {
+        @* --- LANDING PAGE FOR GUESTS --- *@
+        <div class="text-center py-5 bg-white shadow-sm rounded border">
+            <i class="bi bi-shield-lock text-primary" style="font-size: 4rem;"></i>
+            <h1 class="display-4 fw-bold">Project Allocation System</h1>
+            <p class="lead text-muted">A secure, blind-matching platform for students and research supervisors.</p>
+            <hr class="my-4 mx-auto" style="width: 30%;">
+
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg px-4">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                </a>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary btn-lg px-4">
+                    <i class="bi bi-person-plus me-2"></i>Create Account
+                </a>
+                <a asp-controller="Account" asp-action="AdminLogin" class="btn btn-outline-dark btn-lg px-4">
+                    <i class="bi bi-shield-lock-fill me-2"></i>Admin Portal
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        @* --- WELCOME SCREEN FOR LOGGED-IN USERS --- *@
+        <div class="row align-items-center bg-dark text-white p-5 rounded shadow">
+            <div class="col-md-8">
+                <h1 class="display-5">Welcome back!</h1>
+                <p class="lead">You are currently signed in as a <strong>@role</strong>.</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <i class="bi bi-person-check-fill" style="font-size: 5rem; opacity: 0.5;"></i>
+            </div>
+        </div>
+
+        <div class="row mt-4 g-4">
+            @if (role == "Student" || role == "Group")
+            {
+                <div class="col-md-6">
+                    <div class="card h-100 border-primary shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-plus text-primary mb-3" style="font-size: 2.5rem;"></i>
+                            <h4 class="card-title">Submit Proposal</h4>
+                            <p class="card-text text-muted">Upload your research project details for supervisor matching.</p>
+                            <a asp-controller="Project" asp-action="Submit" class="btn btn-primary w-100">Start Submission</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-info shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-list-check text-info mb-3" style="font-size: 2.5rem;"></i>
+                            <h4 class="card-title">View Submissions</h4>
+                            <p class="card-text text-muted">Track the status of your research project matches.</p>
+                            <a asp-controller="Project" asp-action="MyProjects" class="btn btn-info text-white w-100">Check Status</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (role == "Supervisor")
+            {
+                <div class="col-md-6">
+                    <div class="card h-100 border-success shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-search text-success mb-3" style="font-size: 2.5rem;"></i>
+                            <h4 class="card-title">Project Feed</h4>
+                            <p class="card-text text-muted">Browse available student projects in your research area.</p>
+                            <a asp-controller="Supervisor" asp-action="Index" class="btn btn-success w-100">View Feed</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-dark shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people text-dark mb-3" style="font-size: 2.5rem;"></i>
+                            <h4 class="card-title">Match History</h4>
+                            <p class="card-text text-muted">View the students currently assigned to your supervision.</p>
+                            <a asp-controller="Supervisor" asp-action="MyMatches" class="btn btn-dark w-100">View Matches</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (role == "Admin")
+            {
+                <div class="col-md-6">
+                    <div class="card h-100 border-warning shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-kanban text-warning mb-3" style="font-size: 2.5rem;"></i>
+                            <h4 class="card-title">Manage Allocations</h4>
+                            <p class="card-text text-muted">Oversee and reassign supervisor matches across the system.</p>
+                            <a asp-controller="Admin" asp-action="Projects" class="btn btn-warning w-100">Open Manager</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-danger shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-person-gear text-danger mb-3" style="font-size: 2.5rem;"></i>
+                            <h4 class="card-title">User Control</h4>
+                            <p class="card-text text-muted">Manage system users, roles, and account permissions.</p>
+                            <a asp-controller="Admin" asp-action="Users" class="btn btn-danger w-100">Manage Users</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
