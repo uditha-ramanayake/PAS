@@ -1,120 +1,269 @@
 # Functional Test Cases – PAS Blind Matching System
 
-**Project:** PUSL2020 – Project Approval System (PAS)  
-**Testing Type:** Functional (User Journey / Black-Box)  
-**Tested Against:** ASP.NET Core 8.0 Application  
+**Project:** Project Approval System (PAS)  
+**Module:** Software Development Tools and Practices  
+**Academic Year:** 2026 
+**Testing Type:** Functional (User Journey / Black-Box Testing)  
+**Application:** ASP.NET Core 8.0 – Tested on localhost  
+**Test Executor:** Kasundi Ranaweera  
+**Date Executed:** April 2026  
+
+---
+
+## Test Environment
+
+| Item | Details |
+|------|---------|
+| Framework | ASP.NET Core 8.0 MVC |
+| Database | SQL Server (local) |
+| Browser | Google Chrome / Microsoft Edge |
+| IDE | Visual Studio 2022 |
+| Base URL | https://localhost:xxxx |
+| Test Type | Manual Black-Box Testing |
+
+---
+
+## Test Case Summary
+
+| Test ID | Title | Result |
+|---------|-------|--------|
+| FTC-01 | Student Registration and Login | ✅ PASSED |
+| FTC-02 | Student Project Submission | ✅ PASSED |
+| FTC-03 | Blind Review — Supervisor Cannot See Student Identity | ✅ PASSED |
+| FTC-04 | Supervisor Confirms Match — Identity Reveal | ✅ PASSED |
+| FTC-05 | Student Views Match Status and Supervisor Name | ✅ PASSED |
+| FTC-06 | Edit Restriction — Cannot Edit Matched Project | ✅ PASSED |
+| FTC-07 | Admin Pairings Dashboard | ✅ PASSED |
+| FTC-08 | Role-Based Access Control | ✅ PASSED |
+| FTC-09 | Group Project Submission | ✅ PASSED |
+| FTC-10 | Research Area Filter on Supervisor Dashboard | ✅ PASSED |
 
 ---
 
 ## FTC-01: Student Registration and Login
 
-**Objective:** Verify a student can register and log in successfully.
+**Objective:** Verify that a new student user can successfully register an account and log in to the system.  
+**Pre-condition:** No existing account with the test email address.  
+**User Role:** Student  
 
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Navigate to `/Account/Register` | Registration form is displayed | ✅ Pass |
-| 2 | Enter Name, Email, Password, Role = "Student" | Form accepts input | ✅ Pass |
-| 3 | Click "Register" | Account is created, redirect to login | ✅ Pass |
-| 4 | Navigate to `/Account/Login` | Login form is displayed | ✅ Pass |
-| 5 | Enter registered email and password | Login successful, session created | ✅ Pass |
-| 6 | Check session Role = "Student" | Role is correctly stored in session | ✅ Pass |
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Navigate to `/Account/Register` | Registration form is displayed with Name, Email, Password, and Role fields | Form displayed correctly with all fields and role dropdown | ✅ Pass |
+| 2 | Select Role = "Student" from dropdown | Research area field is hidden (only required for Supervisors) | Research area field not shown for Student role | ✅ Pass |
+| 3 | Enter Name = "John Perera", Email = "john@test.com", Password = "Test@123" | Form accepts all inputs without errors | All fields accepted | ✅ Pass |
+| 4 | Click "Register" button | Account is created, session is started, redirect to `/Project/Submit` | Successfully redirected to Submit page | ✅ Pass |
+| 5 | Navigate to `/Account/Logout` | Session is cleared, redirect to Login page | Logged out successfully | ✅ Pass |
+| 6 | Navigate to `/Account/Login` | Login form is displayed | Login form shown correctly | ✅ Pass |
+| 7 | Enter registered email and password, click "Login" | Login successful, session Role = "Student" set, redirect to `/Project/Submit` | Redirected to Submit page correctly | ✅ Pass |
+| 8 | Attempt login with wrong password | Error message "Invalid email or password." displayed | Error message displayed, no redirect | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** Session correctly stores Role, UserId, and UserName via HttpContext.Session after successful login.
 
 ---
 
 ## FTC-02: Student Project Submission
 
-**Objective:** Verify a logged-in student can submit a project proposal.
+**Objective:** Verify that a logged-in student can submit a project proposal that is saved with Status = "Pending".  
+**Pre-condition:** Student account exists and user is logged in.  
+**User Role:** Student  
 
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Student | Dashboard is accessible | ✅ Pass |
-| 2 | Navigate to `/Project/Submit` | Submission form is displayed with research areas | ✅ Pass |
-| 3 | Enter Title, Abstract, TechStack, ResearchArea | Form accepts all fields | ✅ Pass |
-| 4 | Click "Submit" | Project saved with Status = "Pending" | ✅ Pass |
-| 5 | Navigate to `/Project/MyProjects` | Submitted project appears in the list | ✅ Pass |
-| 6 | Verify student identity is stored (StudentId) | StudentId matches logged-in user | ✅ Pass |
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Student | Student dashboard accessible, redirect to `/Project/Submit` | Redirected to Submit page | ✅ Pass |
+| 2 | Navigate to `/Project/Submit` | Submission form shown with Title, Abstract, TechStack, ResearchArea fields | Form displayed correctly | ✅ Pass |
+| 3 | Verify Research Area dropdown content | Dropdown contains all 20 predefined research areas from ResearchAreaList | All 20 areas listed correctly | ✅ Pass |
+| 4 | Enter Title = "AI Smart Attendance", Abstract = "Face recognition system", TechStack = "Python, OpenCV", ResearchArea = "Artificial Intelligence" | Form accepts all inputs | All fields accepted | ✅ Pass |
+| 5 | Click "Submit" button | Project saved to database with Status = "Pending" and StudentId = logged-in user | Project saved successfully | ✅ Pass |
+| 6 | Navigate to `/Project/MyProjects` | Submitted project appears with Status = "Pending" and no supervisor assigned | Project listed with correct status | ✅ Pass |
+| 7 | Verify SupervisorId is null | No supervisor name shown on the project card | Supervisor shows as "Not Assigned" | ✅ Pass |
 
----
-
-## FTC-03: Blind Review – Supervisor Cannot See Student Identity
-
-**Objective:** Verify that supervisor cannot see student name/email on the browse dashboard.
-
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Supervisor | Supervisor dashboard accessible | ✅ Pass |
-| 2 | Navigate to `/Supervisor/Index` | List of pending projects shown | ✅ Pass |
-| 3 | Check project cards for student name | Student name shows "Hidden (Blind Review)" | ✅ Pass |
-| 4 | Check project cards for student email | No student email is visible | ✅ Pass |
-| 5 | Verify project Title, Abstract, TechStack visible | Technical content is fully visible | ✅ Pass |
-| 6 | Verify projects filtered by supervisor's ResearchArea | Only matching research area projects shown | ✅ Pass |
+**Result: PASSED**  
+**Notes:** ProjectController.Submit() correctly assigns StudentId from session and defaults Status to "Pending".
 
 ---
 
-## FTC-04: Supervisor Confirms Match – Identity Reveal
+## FTC-03: Blind Review — Supervisor Cannot See Student Identity
 
-**Objective:** Verify that confirming a match updates project status and reveals student identity.
+**Objective:** Verify that the supervisor's dashboard displays project proposals anonymously with student identity concealed as "Hidden (Blind Review)".  
+**Pre-condition:** At least one Pending project exists in the database matching the supervisor's research area.  
+**User Role:** Supervisor  
 
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Supervisor | Dashboard accessible | ✅ Pass |
-| 2 | Browse blind project feed at `/Supervisor/Index` | Pending projects shown anonymously | ✅ Pass |
-| 3 | Click "Confirm Match" on a project | POST to `/Supervisor/SelectProject/{id}` | ✅ Pass |
-| 4 | Verify project Status changes to "Matched" | Status = "Matched" in database | ✅ Pass |
-| 5 | Verify SupervisorId is assigned to project | SupervisorId matches logged-in supervisor | ✅ Pass |
-| 6 | Navigate to `/Supervisor/MyMatches` | Student name and email are now revealed | ✅ Pass |
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Supervisor (ResearchArea = "Artificial Intelligence") | Supervisor dashboard accessible, redirect to `/Supervisor/Index` | Redirected to Supervisor Index | ✅ Pass |
+| 2 | Navigate to `/Supervisor/Index` | List of Pending projects displayed filtered by supervisor's research area | Only Artificial Intelligence projects shown | ✅ Pass |
+| 3 | Inspect each project card for student name | Student name field shows "Hidden (Blind Review)" | Confirmed — "Hidden (Blind Review)" displayed | ✅ Pass |
+| 4 | Inspect each project card for student email | No student email visible anywhere on the page | Student email not present in page source | ✅ Pass |
+| 5 | Verify project Title, Abstract, TechStack are visible | Technical details fully visible to supervisor | Title, Abstract, TechStack all displayed | ✅ Pass |
+| 6 | Verify ResearchArea is visible | Research area label shown on each project card | ResearchArea shown correctly | ✅ Pass |
+| 7 | Check that projects from other research areas are NOT shown | Only projects with ResearchArea = "Artificial Intelligence" visible | No other research area projects shown | ✅ Pass |
+| 8 | Log in as a different supervisor with ResearchArea = "Cybersecurity" | Only Cybersecurity projects are shown | Correctly filtered by research area | ✅ Pass |
 
----
-
-## FTC-05: Student Views Match Status
-
-**Objective:** Verify a student can track their project status and see supervisor details after matching.
-
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Student | Dashboard accessible | ✅ Pass |
-| 2 | Navigate to `/Project/MyProjects` | Project list shown with current status | ✅ Pass |
-| 3 | Check status of submitted project (before match) | Status = "Pending" | ✅ Pass |
-| 4 | After supervisor confirms match, refresh page | Status = "Matched" | ✅ Pass |
-| 5 | Verify supervisor name is now displayed | Supervisor name visible to student | ✅ Pass |
+**Result: PASSED**  
+**Notes:** SupervisorController.Index() correctly hides student identity at the data access layer through LINQ projection. StudentName is explicitly set to "Hidden (Blind Review)" in the ProjectViewModel — not at the view layer.
 
 ---
 
-## FTC-06: Edit Restriction – Cannot Edit Matched Project
+## FTC-04: Supervisor Confirms Match — Identity Reveal
 
-**Objective:** Verify that a student cannot edit a project that has already been matched.
+**Objective:** Verify that when a supervisor confirms a match, the project status updates to "Matched" and both identities are revealed.  
+**Pre-condition:** Supervisor is logged in. At least one Pending project is visible in the blind feed.  
+**User Role:** Supervisor  
 
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Student | Dashboard accessible | ✅ Pass |
-| 2 | Navigate to `/Project/Edit/{id}` for a Matched project | Redirect to MyProjects with error message | ✅ Pass |
-| 3 | Verify error message: "You can only edit Pending projects." | Error message displayed via TempData | ✅ Pass |
-| 4 | Verify edit form does NOT load for Matched project | Form is not accessible | ✅ Pass |
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Supervisor | Supervisor dashboard accessible | Logged in successfully | ✅ Pass |
+| 2 | Navigate to `/Supervisor/Index` | Pending projects displayed anonymously | Projects shown with "Hidden (Blind Review)" | ✅ Pass |
+| 3 | Click "Confirm Match" button on a project | HTTP POST sent to `/Supervisor/SelectProject/{id}` | POST request sent correctly | ✅ Pass |
+| 4 | Verify project Status changes to "Matched" in database | Status = "Matched" stored in SQL Server | Status updated to "Matched" confirmed | ✅ Pass |
+| 5 | Verify SupervisorId is assigned to the project | SupervisorId = logged-in supervisor's UserId | SupervisorId correctly assigned | ✅ Pass |
+| 6 | Navigate to `/Supervisor/MyMatches` | Matched project appears with student name and email revealed | Student name and email now visible | ✅ Pass |
+| 7 | Verify the matched project no longer appears in blind feed | Go back to `/Supervisor/Index` — matched project not shown | Confirmed — project removed from blind feed | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** SupervisorController.SelectProject() correctly updates both SupervisorId and Status in a single SaveChangesAsync() call. The MyMatches() action uses Include(p => p.Student) to eagerly load student details for the identity reveal.
 
 ---
 
-## FTC-07: Admin – View All Pairings
+## FTC-05: Student Views Match Status and Supervisor Name
 
-**Objective:** Verify the Module Leader (Admin) can view all matched pairings.
+**Objective:** Verify that after a match is confirmed, the student can see their project status updated to "Matched" and the assigned supervisor's name is visible.  
+**Pre-condition:** A supervisor has confirmed a match on the student's project.  
+**User Role:** Student  
 
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Admin | Admin dashboard accessible | ✅ Pass |
-| 2 | Navigate to `/Admin/Pairings` | All matched projects displayed | ✅ Pass |
-| 3 | Verify student name and supervisor name visible | Both identities shown in admin view | ✅ Pass |
-| 4 | Verify unmatched projects also visible | Projects with Status = "Pending" also listed | ✅ Pass |
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Student | Student dashboard accessible | Logged in successfully | ✅ Pass |
+| 2 | Navigate to `/Project/MyProjects` | Project list displayed with current status | Projects listed correctly | ✅ Pass |
+| 3 | Check project status before match | Status = "Pending" shown | Status shown as "Pending" | ✅ Pass |
+| 4 | After supervisor confirms match, navigate to `/Project/MyProjects` | Status = "Matched" now shown | Status updated to "Matched" | ✅ Pass |
+| 5 | Verify supervisor name is now visible | Supervisor's name displayed on the project card | Supervisor name shown correctly | ✅ Pass |
+| 6 | Verify the Edit button is no longer available | Edit option not shown for Matched projects | Edit button hidden for Matched status | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** ProjectController.MyProjects() uses Include(p => p.Supervisor) to load the supervisor's name. The bilateral identity reveal is confirmed — both student and supervisor see each other's details after matching.
+
+---
+
+## FTC-06: Edit Restriction — Cannot Edit Matched Project
+
+**Objective:** Verify that a student cannot edit a project proposal that has already been matched.  
+**Pre-condition:** Student is logged in. At least one project with Status = "Matched" exists.  
+**User Role:** Student  
+
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Student | Student dashboard accessible | Logged in successfully | ✅ Pass |
+| 2 | Navigate to `/Project/MyProjects` | Project list shown with status indicators | Projects listed correctly | ✅ Pass |
+| 3 | Attempt to navigate to `/Project/Edit/{id}` for a Matched project | Redirect to MyProjects with error message | Redirected with error message | ✅ Pass |
+| 4 | Verify error message content | "You can only edit Pending projects." displayed via TempData | Correct error message shown | ✅ Pass |
+| 5 | Verify Edit form does NOT load | Edit page is not rendered for Matched project | Edit form not accessible | ✅ Pass |
+| 6 | Navigate to `/Project/Edit/{id}` for a Pending project | Edit form loads correctly with all fields | Edit form displayed for Pending project | ✅ Pass |
+| 7 | Update the title of a Pending project and submit | Project title updated successfully in database | Title updated and saved | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** ProjectController.Edit() checks project.Status == "Pending" before rendering the edit form. If status is "Matched", TempData["Error"] is set and the user is redirected to MyProjects.
+
+---
+
+## FTC-07: Admin Pairings Dashboard
+
+**Objective:** Verify that the Module Leader can view a comprehensive dashboard of all confirmed student-supervisor matches.  
+**Pre-condition:** At least one matched project exists in the database. Admin account exists.  
+**User Role:** Admin (Module Leader)  
+
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Navigate to `/Account/AdminLogin` | Admin login form displayed | Admin login form shown | ✅ Pass |
+| 2 | Enter valid admin credentials (Name + Password) | Login successful, redirect to `/Admin/Users` | Redirected to Admin Users page | ✅ Pass |
+| 3 | Navigate to `/Admin/Pairings` | Pairings dashboard displays all Matched projects | All matched projects listed | ✅ Pass |
+| 4 | Verify student name visible for each matched project | Student name shown (not hidden) | Student names visible in admin view | ✅ Pass |
+| 5 | Verify supervisor name visible for each matched project | Supervisor name shown | Supervisor names visible | ✅ Pass |
+| 6 | Navigate to `/Admin/Projects` | Full list of all projects shown regardless of status | All projects including Pending shown | ✅ Pass |
+| 7 | Navigate to `/Admin/Users` | Full list of all registered users shown | All users listed with roles | ✅ Pass |
+| 8 | Edit a user's details | User details updated successfully | User record updated in database | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** AdminController.Pairings() queries only projects where Status = "Matched" and SupervisorId != null. Both Student and Supervisor navigation properties are eagerly loaded using Include(), providing full visibility to the administrator.
 
 ---
 
 ## FTC-08: Role-Based Access Control
 
-**Objective:** Verify that users cannot access pages outside their role.
+**Objective:** Verify that users cannot access pages outside their assigned role and that unauthorised access attempts are redirected to the login page.  
+**Pre-condition:** Multiple user accounts with different roles exist.  
+**User Role:** All roles tested  
 
-| Step | Action | Expected Result | Status |
-|------|--------|-----------------|--------|
-| 1 | Log in as Student, navigate to `/Supervisor/Index` | Redirect to Login (Unauthorized) | ✅ Pass |
-| 2 | Log in as Supervisor, navigate to `/Project/Submit` | Redirect to Unauthorized | ✅ Pass |
-| 3 | Access any page without logging in | Redirect to Login page | ✅ Pass |
-| 4 | Log in as Admin, navigate to `/Admin/Projects` | Admin dashboard loads correctly | ✅ Pass |
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Student, manually navigate to `/Supervisor/Index` | Redirect to `/Account/Login` | Redirected to Login page | ✅ Pass |
+| 2 | Log in as Student, manually navigate to `/Admin/Users` | Redirect to `/Account/AdminLogin` | Redirected to Admin Login | ✅ Pass |
+| 3 | Log in as Supervisor, manually navigate to `/Project/Submit` | Return Unauthorized (401) response | Unauthorized response returned | ✅ Pass |
+| 4 | Log in as Supervisor, manually navigate to `/Admin/Pairings` | Redirect to `/Account/AdminLogin` | Redirected to Admin Login | ✅ Pass |
+| 5 | Access any page without logging in | Redirect to Login page | Redirected to Login page | ✅ Pass |
+| 6 | Log in as Admin, navigate to `/Admin/Projects` | Admin Projects page loads correctly | Admin dashboard loads correctly | ✅ Pass |
+| 7 | Log in as Admin, navigate to `/Supervisor/Index` | Redirect to Login (not an Admin route) | Redirected correctly | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** All controller actions validate HttpContext.Session.GetString("Role") before processing requests. Session-based RBAC is enforced at the server side ensuring that role separation cannot be bypassed through direct URL manipulation.
 
 ---
+
+## FTC-09: Group Project Submission
+
+**Objective:** Verify that a Group user can submit a project proposal with group member details that are correctly serialised and stored.  
+**Pre-condition:** A Group user account exists and is logged in.  
+**User Role:** Group  
+
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Group user | Group dashboard accessible, redirect to `/Project/Submit` | Redirected to Submit page | ✅ Pass |
+| 2 | Navigate to `/Project/Submit` | Form displayed with additional group member fields visible | Group member input fields shown | ✅ Pass |
+| 3 | Enter project details (Title, Abstract, TechStack, ResearchArea) | Form accepts all project fields | All fields accepted | ✅ Pass |
+| 4 | Enter group member 1: Name = "Nimal Perera", UserId = "10001" | Member field accepts input | Input accepted | ✅ Pass |
+| 5 | Enter group member 2: Name = "Amali Silva", UserId = "10002" | Second member field accepts input | Input accepted | ✅ Pass |
+| 6 | Click "Submit" | Project saved with GroupMembersJson serialised as JSON array | Project saved successfully | ✅ Pass |
+| 7 | Navigate to `/Project/MyProjects` | Group members listed under the project card | Both members displayed correctly | ✅ Pass |
+| 8 | Attempt group submission with no members entered | Error message "Group submissions must include at least one member." | Validation error shown | ✅ Pass |
+| 9 | Attempt group submission with mismatched name/ID count | Error message "Each member must have both name and ID." | Validation error shown | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** ProjectController.Submit() serialises group member data into GroupMembersJson using JsonSerializer.Serialize(). The MyProjects() action deserialises this field using JsonSerializer.Deserialize<List<GroupMemberInfo>>() after materialising the query with ToListAsync().
+
+---
+
+## FTC-10: Research Area Filter on Supervisor Dashboard
+
+**Objective:** Verify that the supervisor's blind review dashboard only displays projects whose research area matches the supervisor's registered expertise.  
+**Pre-condition:** Multiple projects with different research areas exist. Supervisor is registered with a specific research area.  
+**User Role:** Supervisor  
+
+| Step | Action | Expected Result | Actual Result | Status |
+|------|--------|-----------------|---------------|--------|
+| 1 | Log in as Supervisor with ResearchArea = "Cybersecurity" | Supervisor dashboard accessible | Logged in successfully | ✅ Pass |
+| 2 | Navigate to `/Supervisor/Index` | Only Cybersecurity projects shown | Only Cybersecurity projects displayed | ✅ Pass |
+| 3 | Verify Artificial Intelligence projects NOT shown | AI projects absent from the feed | Confirmed — AI projects not visible | ✅ Pass |
+| 4 | Verify Web & Mobile Development projects NOT shown | Web projects absent from the feed | Confirmed — Web projects not visible | ✅ Pass |
+| 5 | Log out and log in as a Supervisor with ResearchArea = "Artificial Intelligence" | AI Supervisor dashboard accessible | Logged in successfully | ✅ Pass |
+| 6 | Navigate to `/Supervisor/Index` | Only Artificial Intelligence projects shown | Only AI projects displayed | ✅ Pass |
+| 7 | Verify Cybersecurity projects NOT shown | Cybersecurity projects absent | Confirmed — Cybersecurity projects not visible | ✅ Pass |
+| 8 | Log in as a Supervisor with no research area set | All Pending projects shown regardless of area | All projects displayed when no area filter | ✅ Pass |
+
+**Result: PASSED**  
+**Notes:** SupervisorController.Index() applies a conditional Where clause: if the supervisor's ResearchArea is not null or empty, projects are filtered by matching research area. If no research area is set, all Pending projects are shown.
+
+---
+
+## Overall Functional Test Results
+
+| Total Test Cases | Passed | Failed | Pass Rate |
+|-----------------|--------|--------|-----------|
+| 10 | 10 | 0 | 100% |
+
+All ten functional test cases passed successfully when executed against the running ASP.NET Core 8.0 application on localhost. The tests confirm that the blind matching mechanism, identity reveal, role-based access control, group project support, and administrative oversight all function correctly as specified in the system requirements.
+
+---
+
+*Functional tests executed manually against the PAS application running on localhost using Google Chrome and Microsoft Edge. Test results recorded by the Group, April 2026.*
+
