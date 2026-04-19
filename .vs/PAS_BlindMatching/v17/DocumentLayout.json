@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas.tests\\databaseintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|solutionrelative:pas.tests\\databaseintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas.tests\\pas.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|solutionrelative:pas.tests\\pas.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas.tests\\matchinglogictests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|solutionrelative:pas.tests\\matchinglogictests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF4C104A-6143-44D5-BE28-1039D45FB971}|PAS_BlindMatching\\PAS_BlindMatching.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas_blindmatching\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BF4C104A-6143-44D5-BE28-1039D45FB971}|PAS_BlindMatching\\PAS_BlindMatching.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas_blindmatching\\pas_blindmatching.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{BF4C104A-6143-44D5-BE28-1039D45FB971}|PAS_BlindMatching\\PAS_BlindMatching.csproj|solutionrelative:pas_blindmatching\\pas_blindmatching.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas.tests\\databaseintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|solutionrelative:pas.tests\\databaseintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas.tests\\matchinglogictests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|solutionrelative:pas.tests\\matchinglogictests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8059EBD9-31C2-4068-808F-825FBBD52084}|PAS.tests\\PAS.tests.csproj|c:\\users\\user\\documents\\pas project github folder\\pas_blindmatching\\pas.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -150,7 +150,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -162,29 +162,29 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DatabaseIntegrationTests.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\DatabaseIntegrationTests.cs",
               "RelativeDocumentMoniker": "PAS.tests\\DatabaseIntegrationTests.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\DatabaseIntegrationTests.cs",
               "RelativeToolTip": "PAS.tests\\DatabaseIntegrationTests.cs",
-              "ViewState": "AgIAANIAAAAAAAAAAAAmwPAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwPMBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-19T05:24:59.277Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PAS_BlindMatching",
+              "DocumentIndex": 4,
+              "Title": "PAS_BlindMatching.csproj",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS_BlindMatching\\PAS_BlindMatching.csproj",
               "RelativeDocumentMoniker": "PAS_BlindMatching\\PAS_BlindMatching.csproj",
               "ToolTip": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS_BlindMatching\\PAS_BlindMatching.csproj",
@@ -196,8 +196,8 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PAS.tests",
+              "DocumentIndex": 1,
+              "Title": "PAS.tests.csproj",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\PAS.tests.csproj",
               "RelativeDocumentMoniker": "PAS.tests\\PAS.tests.csproj",
               "ToolTip": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\PAS.tests.csproj",
@@ -208,20 +208,33 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MatchingLogicTests.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\MatchingLogicTests.cs",
+              "RelativeDocumentMoniker": "PAS.tests\\MatchingLogicTests.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\MatchingLogicTests.cs",
+              "RelativeToolTip": "PAS.tests\\MatchingLogicTests.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAYwAQCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T05:16:26.129Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS_BlindMatching\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "PAS_BlindMatching\\Data\\AppDbContext.cs",
@@ -229,21 +242,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:03:32.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MatchingLogicTests.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\MatchingLogicTests.cs",
-              "RelativeDocumentMoniker": "PAS.tests\\MatchingLogicTests.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\pas project github folder\\PAS_BlindMatching\\PAS.tests\\MatchingLogicTests.cs",
-              "RelativeToolTip": "PAS.tests\\MatchingLogicTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T05:16:26.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:03:32.093Z"
             },
             {
               "$type": "Document",
@@ -255,8 +254,7 @@
               "RelativeToolTip": "PAS.tests\\UnitTest1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T05:03:35.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T05:03:35.119Z"
             },
             {
               "$type": "Document",
@@ -268,8 +266,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\_ViewStart.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:24:17.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:24:17.673Z"
             },
             {
               "$type": "Document",
@@ -281,8 +278,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:24:11.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:24:11.178Z"
             },
             {
               "$type": "Document",
@@ -294,8 +290,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:23:12.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:23:12.665Z"
             },
             {
               "$type": "Document",
@@ -307,8 +302,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Home\\Privacy.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:22:29.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:22:29.108Z"
             },
             {
               "$type": "Document",
@@ -320,8 +314,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAFcAAAAAAAAAAAAiwHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:22:20.817Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:22:20.817Z"
             },
             {
               "$type": "Document",
@@ -333,8 +326,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAGoAAAAAAAAAAAAiwIYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:18:56.963Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:18:56.963Z"
             },
             {
               "$type": "Document",
@@ -346,8 +338,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Project\\Submit.cshtml",
               "ViewState": "AgIAAHcAAAAAAAAAAAAiwJMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:18:50.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:18:50.323Z"
             },
             {
               "$type": "Document",
@@ -359,8 +350,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Project\\MyProjects.cshtml",
               "ViewState": "AgIAALUAAAAAAAAAAAAiwNEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:18:41.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:18:41.958Z"
             },
             {
               "$type": "Document",
@@ -372,8 +362,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Project\\Edit.cshtml",
               "ViewState": "AgIAAIgAAAAAAAAAAAAiwKQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:18:34.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:18:34.013Z"
             },
             {
               "$type": "Document",
@@ -385,8 +374,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Account\\Register.cshtml",
               "ViewState": "AgIAAGMAAAAAAAAAAAAswIEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:18:02.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:18:02.815Z"
             },
             {
               "$type": "Document",
@@ -398,8 +386,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Account\\Login.cshtml",
               "ViewState": "AgIAABwAAAAAAAAAAAAswDoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:17:58.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:58.395Z"
             },
             {
               "$type": "Document",
@@ -411,8 +398,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Account\\AdminLogin.cshtml",
               "ViewState": "AgIAAB4AAAAAAAAAAAAswDwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:17:53.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:53.127Z"
             },
             {
               "$type": "Document",
@@ -424,8 +410,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Models\\Users.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAiwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:46.599Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:46.599Z"
             },
             {
               "$type": "Document",
@@ -437,8 +422,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Models\\ProjectViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:41.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:41.882Z"
             },
             {
               "$type": "Document",
@@ -450,8 +434,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Models\\Project.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:37.948Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:37.948Z"
             },
             {
               "$type": "Document",
@@ -463,8 +446,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:33.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:33.61Z"
             },
             {
               "$type": "Document",
@@ -476,8 +458,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Migrations\\AppDbContextModelSnapshot.cs",
               "ViewState": "AgIAAF8AAAAAAAAAAAAiwHsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:26.567Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:26.567Z"
             },
             {
               "$type": "Document",
@@ -489,8 +470,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Migrations\\20260411000000_AddGroupMembersJson.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:24.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:24.431Z"
             },
             {
               "$type": "Document",
@@ -502,8 +482,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Migrations\\20260405180710_Initial.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:22.14Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:22.14Z"
             },
             {
               "$type": "Document",
@@ -515,8 +494,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Migrations\\20260405153711_InitialCreate.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAiwFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:16.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:16.143Z"
             },
             {
               "$type": "Document",
@@ -528,8 +506,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Data\\AppDbContextFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:17:13.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:17:13.47Z"
             },
             {
               "$type": "Document",
@@ -541,8 +518,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Shared\\Error.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:15:11.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:15:11.367Z"
             },
             {
               "$type": "Document",
@@ -554,8 +530,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Supervisor\\Index.cshtml",
               "ViewState": "AgIAAIsAAAAAAAAAAAAiwJsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T19:14:45.93Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T19:14:45.93Z"
             },
             {
               "$type": "Document",
@@ -567,8 +542,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Supervisor\\MyMatches.cshtml",
               "ViewState": "AgIAAFgAAAAAAAAAAAAiwGsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-18T18:10:03.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T18:10:03.206Z"
             },
             {
               "$type": "Document",
@@ -580,8 +554,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T15:52:13.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-17T15:52:13.638Z"
             },
             {
               "$type": "Document",
@@ -593,8 +566,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\user\\Users.cshtml",
               "ViewState": "AgIAAIsAAAAAAAAAAAAiwKcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T15:48:30.324Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-17T15:48:30.324Z"
             },
             {
               "$type": "Document",
@@ -606,8 +578,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Admin\\Pairings.cshtml",
               "ViewState": "AgIAAIYAAAAAAAAAAAAswKQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T15:47:55.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-17T15:47:55.175Z"
             },
             {
               "$type": "Document",
@@ -619,8 +590,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Views\\Admin\\Projects.cshtml",
               "ViewState": "AgIAAJAAAAAAAAAAAAAswK4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T15:47:26.733Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-17T15:47:26.733Z"
             },
             {
               "$type": "Document",
@@ -632,8 +602,7 @@
               "RelativeToolTip": "PAS_BlindMatching\\Controllers\\AdminController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAALMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T15:47:01.446Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-17T15:47:01.446Z"
             }
           ]
         }
