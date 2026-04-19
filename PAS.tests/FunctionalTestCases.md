@@ -18,7 +18,7 @@
 | Database | SQL Server (local) |
 | Browser | Google Chrome / Microsoft Edge |
 | IDE | Visual Studio 2022 |
-| Base URL | https://localhost:xxxx |
+| Base URL | https://localhost:5000 |
 | Test Type | Manual Black-Box Testing |
 
 ---
