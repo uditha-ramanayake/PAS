@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using Microsoft.EntityFrameworkCore;
 using PAS_BlindMatching.Data;
 using PAS_BlindMatching.Models;
@@ -21,14 +21,12 @@ namespace PAS.tests
             return new AppDbContext(options);
         }
 
-        // ============================================================
+        
         // USER CRUD TESTS
-        // ============================================================
-
-        // -------------------------------------------------------
+        
         // TEST 1: CREATE USER
         // Verifies a student user is saved to the database correctly
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test1_CreateUser()
         {
@@ -50,10 +48,10 @@ namespace PAS.tests
             Assert.Equal(1, count);
         }
 
-        // -------------------------------------------------------
+       
         // TEST 2: READ USER
         // Verifies a saved user can be retrieved from the database
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test2_ReadUsers()
         {
@@ -77,11 +75,11 @@ namespace PAS.tests
             Assert.Equal("Test", user.Name);
         }
 
-        // -------------------------------------------------------
+       
         // TEST 3: UPDATE USER
         // Verifies a user's name can be updated in the database
         // Tests: AdminController.EditUser() update logic
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test3_UpdateUser()
         {
@@ -107,11 +105,11 @@ namespace PAS.tests
             Assert.Equal("Updated Name", updated.Name);
         }
 
-        // -------------------------------------------------------
+       
         // TEST 4: DELETE USER
         // Verifies a user can be removed from the database
         // Tests: AdminController.DeleteUser() logic
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task Test4_DeleteUser()
         {
@@ -137,15 +135,13 @@ namespace PAS.tests
             Assert.Equal(0, count);
         }
 
-        // ============================================================
+        
         // MATCH CONFIRMATION TEST
-        // ============================================================
-
-        // -------------------------------------------------------
+        
         // TEST 5: CONFIRM MATCH - SupervisorId and Status updated
         // Verifies match confirmation correctly updates project fields
         // Tests: SupervisorController.SelectProject() database update
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task Test5_ConfirmMatch_UpdatesSupervisorIdAndStatus()
         {
@@ -176,15 +172,13 @@ namespace PAS.tests
             Assert.Equal("Matched", updated.Status);
         }
 
-        // ============================================================
+        
         // PROJECT CRUD TESTS
-        // ============================================================
-
-        // -------------------------------------------------------
+        
         // TEST 6: CREATE PROJECT
         // Verifies a project is saved to the database correctly
         // Tests: ProjectController.Submit() database save
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test6_CreateProject()
         {
@@ -208,10 +202,10 @@ namespace PAS.tests
             Assert.Equal(1, count);
         }
 
-        // -------------------------------------------------------
+        
         // TEST 7: READ PROJECT
         // Verifies a saved project can be retrieved from the database
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task Test7_ReadProjects()
         {
@@ -238,11 +232,11 @@ namespace PAS.tests
             Assert.Equal("Pending", project.Status);
         }
 
-        // -------------------------------------------------------
+       
         // TEST 8: UPDATE PROJECT
         // Verifies a project title can be updated in the database
         // Tests: ProjectController.Edit() database update
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task Test8_UpdateProject()
         {
@@ -270,11 +264,10 @@ namespace PAS.tests
             Assert.Equal("Updated Title", updated.Title);
         }
 
-        // -------------------------------------------------------
         // TEST 9: DELETE PROJECT
         // Verifies a project can be removed from the database
         // Tests: AdminController.DeleteUser() cascade project removal
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test9_DeleteProject()
         {
@@ -302,14 +295,12 @@ namespace PAS.tests
             Assert.Equal(0, count);
         }
 
-        // ============================================================
+      
         // INFRASTRUCTURE TESTS
-        // ============================================================
-
-        // -------------------------------------------------------
+        
         // TEST 10: DBCONTEXT NOT NULL
         // Verifies the AppDbContext is correctly instantiated
-        // -------------------------------------------------------
+        
         [Fact]
         public void Test10_DbContext_NotNull()
         {
@@ -320,10 +311,9 @@ namespace PAS.tests
             Assert.NotNull(db);
         }
 
-        // -------------------------------------------------------
         // TEST 11: IN-MEMORY DATABASE ACTIVE
         // Verifies the InMemory database provider is active during testing
-        // -------------------------------------------------------
+     
         [Fact]
         public void Test11_InMemoryDatabase_Check()
         {
@@ -334,15 +324,11 @@ namespace PAS.tests
             Assert.True(db.Database.IsInMemory());
         }
 
-        // ============================================================
         // NAVIGATION PROPERTY TESTS
-        // ============================================================
-
-        // -------------------------------------------------------
         // TEST 12: STUDENT NAVIGATION PROPERTY
         // Verifies EF Core Include() correctly loads Student navigation property
         // Tests: SupervisorController.MyMatches() Include(p => p.Student)
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test12_Project_IncludesStudentNavigationProperty()
         {
@@ -381,13 +367,12 @@ namespace PAS.tests
             Assert.NotNull(loaded.Student);
             Assert.Equal("Amali Dias", loaded.Student.Name);
             Assert.Equal("amali@test.com", loaded.Student.Email);
-        }
 
-        // -------------------------------------------------------
+      
         // TEST 13: SUPERVISOR NAVIGATION PROPERTY
         // Verifies EF Core Include() correctly loads Supervisor navigation property
         // Tests: ProjectController.MyProjects() Include(p => p.Supervisor)
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task Test13_Project_IncludesSupervisorNavigationProperty()
         {
@@ -430,11 +415,11 @@ namespace PAS.tests
             Assert.Equal("Cybersecurity", loaded.Supervisor.ResearchArea);
         }
 
-        // -------------------------------------------------------
+        
         // TEST 14: RESEARCH AREA LIST INTEGRITY
         // Verifies ResearchAreaList contains exactly 20 predefined areas
         // Tests: ResearchAreaList static class in Users.cs
-        // -------------------------------------------------------
+ 
         [Fact]
         public void Test14_ResearchAreaList_ContainsTwentyAreas()
         {
@@ -450,11 +435,11 @@ namespace PAS.tests
             Assert.Contains("Web & Mobile Development", areas);
         }
 
-        // -------------------------------------------------------
+        
         // TEST 15: GROUP MEMBERS JSON STORED CORRECTLY
         // Verifies GroupMembersJson is stored and retrieved accurately
         // Tests: ProjectController.Submit() and MyProjects() group logic
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task Test15_GroupProject_GroupMembersJson_StoredAndRetrieved()
         {
