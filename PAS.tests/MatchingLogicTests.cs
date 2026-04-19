@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using Moq;
 using Microsoft.EntityFrameworkCore;
 using PAS_BlindMatching.Data;
@@ -22,11 +22,10 @@ namespace PAS.tests
             return new AppDbContext(options);
         }
 
-        // -------------------------------------------------------
         // TEST 1: BLIND REVIEW
         // Verifies student identity is hidden during supervisor browsing
         // Tests: SupervisorController.Index() blind projection logic
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task BlindReview_StudentNameIsHidden_WhenProjectIsPending()
         {
@@ -83,11 +82,10 @@ namespace PAS.tests
             Assert.NotEqual("John Perera", pendingProjects[0].StudentName);
         }
 
-        // -------------------------------------------------------
         // TEST 2: STATUS TRANSITION
         // Verifies project status changes from Pending to Matched
         // Tests: SupervisorController.SelectProject() logic
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task ProjectStatus_ChangesToMatched_WhenSupervisorConfirms()
         {
@@ -118,11 +116,11 @@ namespace PAS.tests
             Assert.Equal(2, updated.SupervisorId);
         }
 
-        // -------------------------------------------------------
+     
         // TEST 3: IDENTITY REVEAL
         // Verifies student name and email are visible after matching
         // Tests: SupervisorController.MyMatches() identity reveal
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task IdentityReveal_StudentDetailsVisible_AfterMatching()
         {
@@ -172,11 +170,11 @@ namespace PAS.tests
             Assert.NotEqual("Hidden (Blind Review)", matchedProjects[0].StudentName);
         }
 
-        // -------------------------------------------------------
+       
         // TEST 4: RESEARCH AREA FILTER
         // Verifies supervisor only sees projects matching their expertise
         // Tests: SupervisorController.Index() research area filtering
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task SupervisorDashboard_OnlyShowsProjects_MatchingResearchArea()
         {
@@ -201,11 +199,11 @@ namespace PAS.tests
             Assert.All(filtered, p => Assert.Equal("Artificial Intelligence", p.ResearchArea));
         }
 
-        // -------------------------------------------------------
+        
         // TEST 5: EDIT RESTRICTION
         // Verifies a matched project cannot be edited by student
         // Tests: ProjectController.Edit() guard logic
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task EditProject_IsNotAllowed_WhenProjectIsMatched()
         {
@@ -233,11 +231,11 @@ namespace PAS.tests
             Assert.False(canEdit);
         }
 
-        // -------------------------------------------------------
+      
         // TEST 6: DEFAULT STATUS
         // Verifies new project submission always defaults to Pending
         // Tests: ProjectController.Submit() default state
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task NewProject_DefaultStatus_IsPending()
         {
@@ -266,11 +264,10 @@ namespace PAS.tests
             Assert.Null(saved.SupervisorId);
         }
 
-        // -------------------------------------------------------
         // TEST 7: NO DOUBLE MATCHING
         // Verifies matched projects do not appear in supervisor blind feed
         // Tests: SupervisorController.Index() status filter
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task MatchedProject_DoesNotAppear_InSupervisorBlindFeed()
         {
@@ -298,11 +295,10 @@ namespace PAS.tests
             Assert.Empty(availableProjects);
         }
 
-        // -------------------------------------------------------
         // TEST 8: SUPERVISOR NAME REVEAL TO STUDENT
         // Verifies supervisor name is visible to student after match
         // Tests: ProjectController.MyProjects() after match
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task SupervisorName_IsVisibleToStudent_AfterMatch()
         {
@@ -362,11 +358,11 @@ namespace PAS.tests
             Assert.Equal("Matched", viewModel[0].Status);
         }
 
-        // -------------------------------------------------------
+       
         // TEST 9: SUPERVISOR REQUIRES RESEARCH AREA
         // Verifies supervisor must have research area on registration
         // Tests: AccountController.Register() validation logic
-        // -------------------------------------------------------
+      
         [Fact]
         public async Task Supervisor_MustHave_ResearchArea()
         {
@@ -394,11 +390,10 @@ namespace PAS.tests
             Assert.Equal("Cybersecurity", saved.ResearchArea);
         }
 
-        // -------------------------------------------------------
         // TEST 10: GROUP PROJECT SUBMISSION
         // Verifies GroupMembersJson is correctly serialized and stored
         // Tests: ProjectController.Submit() group member logic
-        // -------------------------------------------------------
+        
         [Fact]
         public async Task GroupProject_GroupMembersJson_SerializedAndDeserialized()
         {
@@ -440,11 +435,10 @@ namespace PAS.tests
             Assert.Equal("10002", deserialized[1].UserId);
         }
 
-        // -------------------------------------------------------
         // TEST 11: DUPLICATE EMAIL PREVENTION
         // Verifies system prevents duplicate email registration
         // Tests: AccountController.Register() email uniqueness check
-        // -------------------------------------------------------
+       
         [Fact]
         public async Task Register_PreventsDuplicateEmail()
         {
@@ -469,11 +463,11 @@ namespace PAS.tests
             Assert.True(emailExists);
         }
 
-        // -------------------------------------------------------
+        
         // TEST 12: ADMIN PAIRINGS DASHBOARD
         // Verifies admin can view all matched projects with both identities
         // Tests: AdminController.Pairings() logic
-        // -------------------------------------------------------
+    
         [Fact]
         public async Task AdminPairings_ShowsAllMatchedProjects_WithBothIdentities()
         {
