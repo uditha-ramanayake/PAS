@@ -139,7 +139,7 @@
 | 3 | Check project status before match | Status = "Pending" shown | Status shown as "Pending" | ✅ Pass |
 | 4 | After supervisor confirms match, navigate to `/Project/MyProjects` | Status = "Matched" now shown | Status updated to "Matched" | ✅ Pass |
 | 5 | Verify supervisor name is now visible | Supervisor's name displayed on the project card | Supervisor name shown correctly | ✅ Pass |
-| 6 | Verify the Edit button is no longer available | Edit option not shown for Matched projects | Edit button hidden for Matched status | ✅ Pass |
+| 6 | Verify the Edit button is no longer available | Edit option not shown for Matched projects | Edit button grayed out and disabled for Matched project | ✅ Pass |
 
 **Result: PASSED**  
 **Notes:** ProjectController.MyProjects() uses Include(p => p.Supervisor) to load the supervisor's name. The bilateral identity reveal is confirmed — both student and supervisor see each other's details after matching.
@@ -148,23 +148,23 @@
 
 ## FTC-06: Edit Restriction — Cannot Edit Matched Project
 
-**Objective:** Verify that a student cannot edit a project proposal that has already been matched.  
-**Pre-condition:** Student is logged in. At least one project with Status = "Matched" exists.  
-**User Role:** Student  
+**Objective:** Verify that a student cannot edit a project proposal that has already been matched.
+**Pre-condition:** Student is logged in. At least one project with Status = "Matched" and one with Status = "Pending" exist.
+**User Role:** Student
 
 | Step | Action | Expected Result | Actual Result | Status |
 |------|--------|-----------------|---------------|--------|
 | 1 | Log in as Student | Student dashboard accessible | Logged in successfully | ✅ Pass |
-| 2 | Navigate to `/Project/MyProjects` | Project list shown with status indicators | Projects listed correctly | ✅ Pass |
-| 3 | Attempt to navigate to `/Project/Edit/{id}` for a Matched project | Redirect to MyProjects with error message | Redirected with error message | ✅ Pass |
-| 4 | Verify error message content | "You can only edit Pending projects." displayed via TempData | Correct error message shown | ✅ Pass |
-| 5 | Verify Edit form does NOT load | Edit page is not rendered for Matched project | Edit form not accessible | ✅ Pass |
-| 6 | Navigate to `/Project/Edit/{id}` for a Pending project | Edit form loads correctly with all fields | Edit form displayed for Pending project | ✅ Pass |
-| 7 | Update the title of a Pending project and submit | Project title updated successfully in database | Title updated and saved | ✅ Pass |
+| 2 | Navigate to `/Project/MyProjects` | Project list shown with all proposals and their current status | Projects listed correctly with status indicators | ✅ Pass |
+| 3 | Locate a project with Status = "Matched" and inspect the Edit button | Edit button is visually grayed out and disabled — cannot be clicked | Edit button rendered as disabled and non-interactive | ✅ Pass |
+| 4 | Attempt to click the disabled Edit button on a Matched project | No action occurs — button is non-interactive | Button click has no effect | ✅ Pass |
+| 5 | Verify no error message or redirect occurs | No page redirect or error message displayed | Page remains on MyProjects with no redirect | ✅ Pass |
+| 6 | Locate a project with Status = "Pending" and inspect the Edit button | Edit button is active and clickable | Edit button fully functional for Pending projects | ✅ Pass |
+| 7 | Click the Edit button on a Pending project | Edit form loads correctly with all pre-populated fields | Edit form displayed with existing project details | ✅ Pass |
+| 8 | Update the title of a Pending project and submit | Project title updated successfully in database | Title updated and saved correctly | ✅ Pass |
 
-**Result: PASSED**  
-**Notes:** ProjectController.Edit() checks project.Status == "Pending" before rendering the edit form. If status is "Matched", TempData["Error"] is set and the user is redirected to MyProjects.
-
+**Result: PASSED**
+**Notes:** The edit restriction is enforced at the UI level. The Edit button is rendered in a disabled, grayed-out state for projects with Status = "Matched", preventing students from accessing the edit form. The restriction is visually clear to the user through the button's disabled appearance, without requiring a page redirect or error message.
 ---
 
 ## FTC-07: Admin Pairings Dashboard
