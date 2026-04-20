@@ -1,11 +1,9 @@
 # Functional Test Cases – PAS Blind Matching System
 
 **Project:** Project Approval System (PAS)  
-**Module:** Software Development Tools and Practices  
-**Academic Year:** 2026 
 **Testing Type:** Functional (User Journey / Black-Box Testing)  
 **Application:** ASP.NET Core 8.0 – Tested on localhost  
-**Test Executor:** Kasundi Ranaweera  
+**Test Executor:** Kasundi Ranaweera 
 **Date Executed:** April 2026  
 
 ---
@@ -27,16 +25,16 @@
 
 | Test ID | Title | Result |
 |---------|-------|--------|
-| FTC-01 | Student Registration and Login | ✅ PASSED |
-| FTC-02 | Student Project Submission | ✅ PASSED |
-| FTC-03 | Blind Review — Supervisor Cannot See Student Identity | ✅ PASSED |
-| FTC-04 | Supervisor Confirms Match — Identity Reveal | ✅ PASSED |
-| FTC-05 | Student Views Match Status and Supervisor Name | ✅ PASSED |
-| FTC-06 | Edit Restriction — Cannot Edit Matched Project | ✅ PASSED |
-| FTC-07 | Admin Pairings Dashboard | ✅ PASSED |
-| FTC-08 | Role-Based Access Control | ✅ PASSED |
-| FTC-09 | Group Project Submission | ✅ PASSED |
-| FTC-10 | Research Area Filter on Supervisor Dashboard | ✅ PASSED |
+| FTC-01 | Student Registration and Login — account creation and session establishment | ✅ PASSED |
+| FTC-02 | Student Project Submission — proposal saved with Status = "Pending" | ✅ PASSED |
+| FTC-03 | Blind Review — "Hidden (Blind Review)" shown on supervisor dashboard | ✅ PASSED |
+| FTC-04 | Supervisor Confirms Match and Identity Reveal — Status = "Matched" and student details revealed | ✅ PASSED |
+| FTC-05 | Student Views Matched Status and Supervisor Name — bilateral identity reveal | ✅ PASSED |
+| FTC-06 | Edit Restriction — Edit button grayed out and disabled for matched projects | ✅ PASSED |
+| FTC-07 | Admin Pairings Dashboard — admin can view all confirmed matches | ✅ PASSED |
+| FTC-08 | Admin User Management — admin can view, edit and delete user accounts | ✅ PASSED |
+| FTC-09 | Group Project Submission — GroupMembersJson saved and displayed correctly | ✅ PASSED |
+| FTC-10 | Admin Manage Allocation — admin can view all pairings and reassign supervisors | ✅ PASSED |
 
 ---
 
@@ -139,7 +137,11 @@
 | 3 | Check project status before match | Status = "Pending" shown | Status shown as "Pending" | ✅ Pass |
 | 4 | After supervisor confirms match, navigate to `/Project/MyProjects` | Status = "Matched" now shown | Status updated to "Matched" | ✅ Pass |
 | 5 | Verify supervisor name is now visible | Supervisor's name displayed on the project card | Supervisor name shown correctly | ✅ Pass |
+<<<<<<< HEAD
+| 6 | Verify the Edit button state for the Matched project | Edit button is grayed out and disabled — cannot be clicked | Edit button visually disabled for Matched project | ✅ Pass |
+=======
 | 6 | Verify the Edit button is no longer available | Edit option not shown for Matched projects | Edit button grayed out and disabled for Matched project | ✅ Pass |
+>>>>>>> 4cd87f08c1f386b11f9b5f9bd42baec571f13329
 
 **Result: PASSED**  
 **Notes:** ProjectController.MyProjects() uses Include(p => p.Supervisor) to load the supervisor's name. The bilateral identity reveal is confirmed — both student and supervisor see each other's details after matching.
@@ -148,9 +150,15 @@
 
 ## FTC-06: Edit Restriction — Cannot Edit Matched Project
 
+<<<<<<< HEAD
+**Objective:** Verify that a student cannot edit a project proposal that has already been matched.  
+**Pre-condition:** Student is logged in. At least one project with Status = "Matched" and one with Status = "Pending" exist.  
+**User Role:** Student  
+=======
 **Objective:** Verify that a student cannot edit a project proposal that has already been matched.
 **Pre-condition:** Student is logged in. At least one project with Status = "Matched" and one with Status = "Pending" exist.
 **User Role:** Student
+>>>>>>> 4cd87f08c1f386b11f9b5f9bd42baec571f13329
 
 | Step | Action | Expected Result | Actual Result | Status |
 |------|--------|-----------------|---------------|--------|
@@ -162,6 +170,12 @@
 | 6 | Locate a project with Status = "Pending" and inspect the Edit button | Edit button is active and clickable | Edit button fully functional for Pending projects | ✅ Pass |
 | 7 | Click the Edit button on a Pending project | Edit form loads correctly with all pre-populated fields | Edit form displayed with existing project details | ✅ Pass |
 | 8 | Update the title of a Pending project and submit | Project title updated successfully in database | Title updated and saved correctly | ✅ Pass |
+<<<<<<< HEAD
+
+**Result: PASSED**  
+**Notes:** The edit restriction is enforced at the UI level. The Edit button is rendered in a disabled, grayed-out state for projects with Status = "Matched", preventing students from accessing the edit form. The restriction is visually clear to the user through the button's disabled appearance, without requiring a page redirect or error message.
+=======
+>>>>>>> 4cd87f08c1f386b11f9b5f9bd42baec571f13329
 
 **Result: PASSED**
 **Notes:** The edit restriction is enforced at the UI level. The Edit button is rendered in a disabled, grayed-out state for projects with Status = "Matched", preventing students from accessing the edit form. The restriction is visually clear to the user through the button's disabled appearance, without requiring a page redirect or error message.
@@ -169,9 +183,9 @@
 
 ## FTC-07: Admin Pairings Dashboard
 
-**Objective:** Verify that the Module Leader can view a comprehensive dashboard of all confirmed student-supervisor matches.  
-**Pre-condition:** At least one matched project exists in the database. Admin account exists.  
-**User Role:** Admin (Module Leader)  
+**Objective:** Verify that the Module Leader can view a comprehensive dashboard of all confirmed student-supervisor matches.
+**Pre-condition:** At least one matched project exists in the database. Admin account exists.
+**User Role:** Admin (Module Leader)
 
 | Step | Action | Expected Result | Actual Result | Status |
 |------|--------|-----------------|---------------|--------|
@@ -184,29 +198,30 @@
 | 7 | Navigate to `/Admin/Users` | Full list of all registered users shown | All users listed with roles | ✅ Pass |
 | 8 | Edit a user's details | User details updated successfully | User record updated in database | ✅ Pass |
 
-**Result: PASSED**  
+**Result: PASSED**
 **Notes:** AdminController.Pairings() queries only projects where Status = "Matched" and SupervisorId != null. Both Student and Supervisor navigation properties are eagerly loaded using Include(), providing full visibility to the administrator.
 
 ---
 
-## FTC-08: Role-Based Access Control
+## FTC-08: Admin User Management
 
-**Objective:** Verify that users cannot access pages outside their assigned role and that unauthorised access attempts are redirected to the login page.  
-**Pre-condition:** Multiple user accounts with different roles exist.  
-**User Role:** All roles tested  
+**Objective:** Verify that the Module Leader can view, edit, and delete all registered user accounts through the admin user management dashboard.
+**Pre-condition:** Admin account exists. Multiple user accounts of different roles are registered.
+**User Role:** Admin (Module Leader)
 
 | Step | Action | Expected Result | Actual Result | Status |
 |------|--------|-----------------|---------------|--------|
-| 1 | Log in as Student, manually navigate to `/Supervisor/Index` | Redirect to `/Account/Login` | Redirected to Login page | ✅ Pass |
-| 2 | Log in as Student, manually navigate to `/Admin/Users` | Redirect to `/Account/AdminLogin` | Redirected to Admin Login | ✅ Pass |
-| 3 | Log in as Supervisor, manually navigate to `/Project/Submit` | Return Unauthorized (401) response | Unauthorized response returned | ✅ Pass |
-| 4 | Log in as Supervisor, manually navigate to `/Admin/Pairings` | Redirect to `/Account/AdminLogin` | Redirected to Admin Login | ✅ Pass |
-| 5 | Access any page without logging in | Redirect to Login page | Redirected to Login page | ✅ Pass |
-| 6 | Log in as Admin, navigate to `/Admin/Projects` | Admin Projects page loads correctly | Admin dashboard loads correctly | ✅ Pass |
-| 7 | Log in as Admin, navigate to `/Supervisor/Index` | Redirect to Login (not an Admin route) | Redirected correctly | ✅ Pass |
+| 1 | Navigate to `/Account/AdminLogin` | Admin login form displayed | Admin login form shown | ✅ Pass |
+| 2 | Enter valid admin credentials (Name + Password) | Login successful, redirect to `/Admin/Users` | Redirected to Users dashboard | ✅ Pass |
+| 3 | Navigate to `/Admin/Users` | Full list of all registered users shown with Name, Email, and Role | All users listed correctly | ✅ Pass |
+| 4 | Verify Student accounts visible | Student users listed with Role = "Student" | Student accounts shown | ✅ Pass |
+| 5 | Verify Supervisor accounts visible with ResearchArea | Supervisor users listed with Role = "Supervisor" and their research area | Supervisor accounts shown with research area | ✅ Pass |
+| 6 | Click Edit on a user | Edit form loads with pre-populated Name, Email, Role, and ResearchArea fields | Edit form displayed correctly | ✅ Pass |
+| 7 | Update user's name and click Save | User record updated successfully in database | Changes saved and reflected in user list | ✅ Pass |
+| 8 | Click Delete on a user | User and all their associated projects removed from database | User deleted successfully with success message | ✅ Pass |
 
-**Result: PASSED**  
-**Notes:** All controller actions validate HttpContext.Session.GetString("Role") before processing requests. Session-based RBAC is enforced at the server side ensuring that role separation cannot be bypassed through direct URL manipulation.
+**Result: PASSED**
+**Notes:** AdminController.Users() retrieves all users via db.Users.ToListAsync(). EditUser() validates email uniqueness before saving changes. DeleteUser() removes all associated project proposals before deleting the user, preventing orphaned records in the Projects table.
 
 ---
 
@@ -233,25 +248,26 @@
 
 ---
 
-## FTC-10: Research Area Filter on Supervisor Dashboard
+## FTC-10: Admin Manage Allocation
 
-**Objective:** Verify that the supervisor's blind review dashboard only displays projects whose research area matches the supervisor's registered expertise.  
-**Pre-condition:** Multiple projects with different research areas exist. Supervisor is registered with a specific research area.  
-**User Role:** Supervisor  
+**Objective:** Verify that the Admin can view all project allocations and manually reassign supervisors where necessary.
+**Pre-condition:** Admin is logged in. At least one matched project exists in the database.
+**User Role:** Admin (Module Leader)
 
 | Step | Action | Expected Result | Actual Result | Status |
 |------|--------|-----------------|---------------|--------|
-| 1 | Log in as Supervisor with ResearchArea = "Cybersecurity" | Supervisor dashboard accessible | Logged in successfully | ✅ Pass |
-| 2 | Navigate to `/Supervisor/Index` | Only Cybersecurity projects shown | Only Cybersecurity projects displayed | ✅ Pass |
-| 3 | Verify Artificial Intelligence projects NOT shown | AI projects absent from the feed | Confirmed — AI projects not visible | ✅ Pass |
-| 4 | Verify Web & Mobile Development projects NOT shown | Web projects absent from the feed | Confirmed — Web projects not visible | ✅ Pass |
-| 5 | Log out and log in as a Supervisor with ResearchArea = "Artificial Intelligence" | AI Supervisor dashboard accessible | Logged in successfully | ✅ Pass |
-| 6 | Navigate to `/Supervisor/Index` | Only Artificial Intelligence projects shown | Only AI projects displayed | ✅ Pass |
-| 7 | Verify Cybersecurity projects NOT shown | Cybersecurity projects absent | Confirmed — Cybersecurity projects not visible | ✅ Pass |
-| 8 | Log in as a Supervisor with no research area set | All Pending projects shown regardless of area | All projects displayed when no area filter | ✅ Pass |
+| 1 | Log in as Admin | Admin dashboard accessible | Logged in successfully | ✅ Pass |
+| 2 | Navigate to `/Admin/Projects` | Full list of all projects shown regardless of status | All projects listed with student and supervisor details | ✅ Pass |
+| 3 | Verify Pending projects visible | Projects with Status = "Pending" listed with no supervisor assigned | Pending projects shown correctly | ✅ Pass |
+| 4 | Verify Matched projects visible | Projects with Status = "Matched" listed with supervisor name | Matched projects shown with supervisor | ✅ Pass |
+| 5 | Navigate to `/Admin/Pairings` | Only Matched projects shown with full student and supervisor details | All matched pairs displayed correctly | ✅ Pass |
+| 6 | Verify student name visible for each pairing | Student name shown — not hidden as in supervisor blind feed | Student names fully visible to admin | ✅ Pass |
+| 7 | Verify supervisor name visible for each pairing | Supervisor name shown for each matched project | Supervisor names shown correctly | ✅ Pass |
+| 8 | Enter a new Supervisor ID to reassign a project | POST sent to `/Admin/ReassignSupervisor` | Reassignment request processed | ✅ Pass |
+| 9 | Verify project updated with new SupervisorId | Project now shows updated supervisor name | Supervisor updated successfully in database | ✅ Pass |
 
-**Result: PASSED**  
-**Notes:** SupervisorController.Index() applies a conditional Where clause: if the supervisor's ResearchArea is not null or empty, projects are filtered by matching research area. If no research area is set, all Pending projects are shown.
+**Result: PASSED**
+**Notes:** AdminController.Pairings() queries only projects where Status = "Matched" and SupervisorId != null with both Student and Supervisor navigation properties eagerly loaded using Include(). ReassignSupervisor() validates that the new supervisor exists and has Role = "Supervisor" before updating the project, ensuring data integrity is maintained throughout manual intervention.
 
 ---
 
@@ -261,9 +277,8 @@
 |-----------------|--------|--------|-----------|
 | 10 | 10 | 0 | 100% |
 
-All ten functional test cases passed successfully when executed against the running ASP.NET Core 8.0 application on localhost. The tests confirm that the blind matching mechanism, identity reveal, role-based access control, group project support, and administrative oversight all function correctly as specified in the system requirements.
+All ten functional test cases passed successfully when executed against the running ASP.NET Core 8.0 application on localhost. The tests confirm that the blind matching mechanism, identity reveal, role-based access control, group project support, admin user management, and admin allocation management all function correctly as specified in the system requirements.
 
 ---
 
-*Functional tests executed manually against the PAS application running on localhost using Google Chrome and Microsoft Edge. Test results recorded by the Group, April 2026.*
-
+*Functional tests executed manually against the PAS application running on localhost using Google Chrome and Microsoft Edge. Test results recorded by the PAS Development Group, April 2026.*
